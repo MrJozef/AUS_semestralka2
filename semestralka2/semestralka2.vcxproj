@@ -72,10 +72,11 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
+      <DisableSpecificWarnings>4100; 4400; 4634</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,6 +116,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\structures\ds_routines.cpp" />
+    <ClCompile Include="..\structures\structure.cpp" />
+    <ClCompile Include="..\structures\vector\vector.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\structures\array\array.h" />
+    <ClInclude Include="..\structures\ds_routines.h" />
+    <ClInclude Include="..\structures\ds_structure_types.h" />
+    <ClInclude Include="..\structures\heap_monitor.h" />
+    <ClInclude Include="..\structures\structure.h" />
+    <ClInclude Include="..\structures\structure_iterator.h" />
+    <ClInclude Include="..\structures\vector\vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\data\spracovavane_data_2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
