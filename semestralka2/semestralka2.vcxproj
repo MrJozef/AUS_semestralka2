@@ -120,6 +120,7 @@
     <ClCompile Include="..\structures\structure.cpp" />
     <ClCompile Include="..\structures\vector\vector.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="uzemnaJednotka.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\structures\array\array.h" />
@@ -129,6 +130,8 @@
     <ClInclude Include="..\structures\structure.h" />
     <ClInclude Include="..\structures\structure_iterator.h" />
     <ClInclude Include="..\structures\vector\vector.h" />
+    <ClInclude Include="const.h" />
+    <ClInclude Include="uzemnaJednotka.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\data\spracovavane_data_2.txt" />

@@ -33,6 +33,9 @@
     <ClCompile Include="..\structures\vector\vector.cpp">
       <Filter>structures\vector</Filter>
     </ClCompile>
+    <ClCompile Include="uzemnaJednotka.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\structures\ds_routines.h">
@@ -55,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="..\structures\array\array.h">
       <Filter>structures\array</Filter>
+    </ClInclude>
+    <ClInclude Include="uzemnaJednotka.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="const.h">
+      <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
