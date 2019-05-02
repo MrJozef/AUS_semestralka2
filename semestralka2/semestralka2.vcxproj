@@ -131,6 +131,9 @@
     <ClInclude Include="..\structures\structure_iterator.h" />
     <ClInclude Include="..\structures\vector\vector.h" />
     <ClInclude Include="const.h" />
+    <ClInclude Include="kraj.h" />
+    <ClInclude Include="obec.h" />
+    <ClInclude Include="okres.h" />
     <ClInclude Include="uzemnaJednotka.h" />
   </ItemGroup>
   <ItemGroup>

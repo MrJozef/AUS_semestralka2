@@ -21,6 +21,8 @@ public:
 	~UzemnaJednotka();
 
 	string dajNazov();
+	///<summary>Metóda, ktorá vráti pointer na vyššiu územnu jednotku do kt. patrí, napr. Okres vráti pointer na Kraj</summary>
+	virtual UzemnaJednotka* dajVyssiuJednotku() = 0;
 private:
 	///<summary>Metóda, ktorá naèíta objekt zo súboru, volaná konštruktorom</summary>
 	void fromSubor(fstream* inSubor);

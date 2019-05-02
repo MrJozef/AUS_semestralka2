@@ -65,6 +65,15 @@
     <ClInclude Include="const.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="kraj.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="okres.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="obec.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\data\spracovavane_data_2.txt">
