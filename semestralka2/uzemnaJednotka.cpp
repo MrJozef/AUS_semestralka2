@@ -30,7 +30,8 @@ void UzemnaJednotka::fromSubor(fstream* inSubor)
 	odovzdaneObalky_ = new structures::Array<int>(POCET_KOL);
 	platneHlasy_ = new structures::Array<int>(POCET_KOL);
 
-	*inSubor >> nazov_;
+	inSubor->ignore();
+	getline(*inSubor, nazov_);
 	for (int kolo = 0; kolo < POCET_KOL; kolo++)
 	{
 		*inSubor >> (*zapisaniVolici_)[kolo];

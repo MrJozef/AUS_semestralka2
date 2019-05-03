@@ -120,6 +120,7 @@
     <ClCompile Include="..\structures\structure.cpp" />
     <ClCompile Include="..\structures\vector\vector.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="system.cpp" />
     <ClCompile Include="uzemnaJednotka.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,9 @@
     <ClInclude Include="..\structures\ds_routines.h" />
     <ClInclude Include="..\structures\ds_structure_types.h" />
     <ClInclude Include="..\structures\heap_monitor.h" />
+    <ClInclude Include="..\structures\list\array_list.h" />
+    <ClInclude Include="..\structures\list\linked_list.h" />
+    <ClInclude Include="..\structures\list\list.h" />
     <ClInclude Include="..\structures\structure.h" />
     <ClInclude Include="..\structures\structure_iterator.h" />
     <ClInclude Include="..\structures\vector\vector.h" />
@@ -134,6 +138,7 @@
     <ClInclude Include="kraj.h" />
     <ClInclude Include="obec.h" />
     <ClInclude Include="okres.h" />
+    <ClInclude Include="system.h" />
     <ClInclude Include="uzemnaJednotka.h" />
   </ItemGroup>
   <ItemGroup>

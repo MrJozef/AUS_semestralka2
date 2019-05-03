@@ -1,35 +1,35 @@
 #include <iostream>
 #include <fstream>
 #include "../structures/heap_monitor.h" 
-#include "kraj.h"
+#include "system.h"
 
 using namespace std;
-//todo pridat system.h/.cpp a asi aj ArrayList/LinkedList
+
 int main()
 {
 	initHeapMonitor();
 
-	Kraj* jedna;
-	Kraj* dva;
-	Kraj* tri;
-
 	fstream* subor = new fstream;
 	subor->open(CESTA_K_DATAM, ios::in);
 
-	jedna = new Kraj(subor);
-	dva = new Kraj(subor);
-	tri = new Kraj(subor);
+	System* sys = nullptr;
 
-	cout << tri->dajNazov();
-	cout << dva->dajNazov();
+	if (subor->is_open())
+	{
+		sys = new System(subor);
+		cout << "Data boli uspesne nacitane!" << endl;
 
-	subor->close();
-	cin.get();
+		subor->close();
+	}
+	else
+	{
+		cout << "Chyba - Nepodarilo sa otvorit subor s datami!" << endl;
+	}
 
-	delete jedna;
-	delete dva;
-	delete tri;
-
+	
 	delete subor;
+	delete sys;		//mozem bez obav deletovat nullptr
+
+	cin.get();
 	return 0;
 }

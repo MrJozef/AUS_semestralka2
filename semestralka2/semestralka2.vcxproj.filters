@@ -19,6 +19,9 @@
     <Filter Include="structures\array">
       <UniqueIdentifier>{30e836e6-52ad-4a4b-a289-e0ddc06f83a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="structures\list">
+      <UniqueIdentifier>{3f2825f5-097b-458e-b6a4-a753d069b17f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\structures\ds_routines.cpp">
@@ -34,6 +37,9 @@
       <Filter>structures\vector</Filter>
     </ClCompile>
     <ClCompile Include="uzemnaJednotka.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,6 +78,18 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="obec.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\list\array_list.h">
+      <Filter>structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\list\linked_list.h">
+      <Filter>structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\list\list.h">
+      <Filter>structures\list</Filter>
+    </ClInclude>
+    <ClInclude Include="system.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
