@@ -1,5 +1,6 @@
 #include "../structures/heap_monitor.h"
 #include "system.h"
+#include <iostream>
 
 
 System::System(fstream* inSubor)
@@ -18,9 +19,9 @@ System::System(fstream* inSubor)
 	kraje_ = new structures::Array<Kraj*>(pocetKrajov);
 	for (int i = 0; i < pocetKrajov; i++)
 	{
+		(*inSubor).ignore();
 		(*kraje_)[i] = new Kraj(inSubor);
 	}
-
 
 	okresy_ = new structures::Array<Okres*>(pocetOkresov);
 	for (int i = 0; i < pocetOkresov; i++)
@@ -81,4 +82,72 @@ System::~System()
 	kraje_ = nullptr;
 	okresy_ = nullptr;
 	obce_ = nullptr;
+}
+
+
+void System::zmenNazvy()		//todo delete
+{
+	structures::LinkedList<Obec*>* rovnakeObce = new structures::LinkedList<Obec*>();
+
+	/*for (int i = 0;i<8;i++)
+	{
+		std::cout << (*kraje_)[i]->dajNazov() << endl;
+	}
+
+	for (int i = 0; i < 79; i++)
+	{
+		std::cout << (*okresy_)[i]->dajNazov() << endl;
+	}
+
+	for (Obec* obec : *obce_)
+	{
+		std::cout << obec->dajNazov() << endl;
+	}*/
+
+	string pom;
+	for (Obec* obec : *obce_)
+	{
+		pom = obec->dajNazov();
+
+		for (Obec* ob : *obce_)
+		{
+			if (pom == ob->dajNazov() && (obec != ob))
+			{
+				rovnakeObce->add(obec);
+				break;
+			}
+		}
+	}
+
+	for (Obec* obec : *rovnakeObce)
+	{
+		obec->zmenNazov();
+		std::cout << obec->dajNazov() << endl;
+	}
+
+	fstream* subor = new fstream;
+	subor->open("../data/spracovane_data.txt", ios::out);
+
+	*subor << 8 << endl;
+	*subor << 79 << endl;
+	*subor << 2926 << endl;
+
+	for (int i = 0; i < 8; i++)
+	{
+		(*kraje_)[i]->toSubor(subor);
+	}
+
+	for (int i = 0; i < 79; i++)
+	{
+		*subor << (*(*okresy_)[i]->dajVyssiuJednotku()).dajNazov() << endl;
+		(*okresy_)[i]->toSubor(subor);
+	}
+
+	for (Obec* obec : *obce_)
+	{
+		*subor << obec->dajVyssiuJednotku()->dajNazov() << endl;
+		obec->toSubor(subor);
+	}
+
+	subor->close();
 }

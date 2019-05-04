@@ -15,6 +15,8 @@ public:
 
 	///<summary>Metóda, ktorá vráti pointer na vyššiu územnú jednotku do kt. patrí, napr. Obec vráti pointer na Okres</summary>
 	UzemnaJednotka* dajVyssiuJednotku() override;
+
+	void zmenNazov();
 };
 
 inline Obec::Obec(fstream* inSubor, Okres* vyssiaJednotka)
@@ -30,4 +32,9 @@ inline Obec::~Obec()
 inline UzemnaJednotka* Obec::dajVyssiuJednotku()
 {
 	return okres_;
+}
+
+inline void Obec::zmenNazov()	//todo delete
+{
+	nazov_ = nazov_ + ", " + okres_->dajNazov();
 }

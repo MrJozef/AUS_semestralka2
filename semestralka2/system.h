@@ -18,4 +18,6 @@ public:
 	///<summary>Konštruktor pre naèítavanie zo súboru</summary>
 	System(fstream* inSubor);
 	~System();
+
+	void zmenNazvy();
 };

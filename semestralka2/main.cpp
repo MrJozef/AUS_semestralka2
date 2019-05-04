@@ -18,6 +18,7 @@ int main()
 	{
 		sys = new System(subor);
 		cout << "Data boli uspesne nacitane!" << endl;
+		sys->zmenNazvy();
 
 		subor->close();
 	}

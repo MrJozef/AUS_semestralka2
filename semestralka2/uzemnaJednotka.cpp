@@ -30,7 +30,6 @@ void UzemnaJednotka::fromSubor(fstream* inSubor)
 	odovzdaneObalky_ = new structures::Array<int>(POCET_KOL);
 	platneHlasy_ = new structures::Array<int>(POCET_KOL);
 
-	inSubor->ignore();
 	getline(*inSubor, nazov_);
 	for (int kolo = 0; kolo < POCET_KOL; kolo++)
 	{
@@ -39,6 +38,25 @@ void UzemnaJednotka::fromSubor(fstream* inSubor)
 		*inSubor >> (*ucastPercent_)[kolo];
 		*inSubor >> (*odovzdaneObalky_)[kolo];
 		*inSubor >> (*platneHlasy_)[kolo];
+	}
+}
+
+void UzemnaJednotka::toSubor(fstream* outSubor)		//todo delete
+{
+	*outSubor << nazov_;
+	*outSubor << endl;
+	for (int kolo = 0; kolo < POCET_KOL; kolo++)
+	{
+		*outSubor << (*zapisaniVolici_)[kolo];
+		*outSubor << endl;
+		*outSubor << (*vydaneObalky_)[kolo];
+		*outSubor << endl;
+		*outSubor << (*ucastPercent_)[kolo];
+		*outSubor << endl;
+		*outSubor << (*odovzdaneObalky_)[kolo];
+		*outSubor << endl;
+		*outSubor << (*platneHlasy_)[kolo];
+		*outSubor << endl;
 	}
 }
 
