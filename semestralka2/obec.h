@@ -33,8 +33,3 @@ inline UzemnaJednotka* Obec::dajVyssiuJednotku()
 {
 	return okres_;
 }
-
-inline void Obec::zmenNazov()	//todo delete
-{
-	nazov_ = nazov_ + ", " + okres_->dajNazov();
-}

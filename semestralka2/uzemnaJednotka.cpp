@@ -7,7 +7,6 @@ UzemnaJednotka::UzemnaJednotka(fstream* inSubor)
 	fromSubor(inSubor);
 }
 
-
 UzemnaJednotka::~UzemnaJednotka()
 {
 	delete zapisaniVolici_;
@@ -40,26 +39,6 @@ void UzemnaJednotka::fromSubor(fstream* inSubor)
 		*inSubor >> (*platneHlasy_)[kolo];
 	}
 }
-
-void UzemnaJednotka::toSubor(fstream* outSubor)		//todo delete
-{
-	*outSubor << nazov_;
-	*outSubor << endl;
-	for (int kolo = 0; kolo < POCET_KOL; kolo++)
-	{
-		*outSubor << (*zapisaniVolici_)[kolo];
-		*outSubor << endl;
-		*outSubor << (*vydaneObalky_)[kolo];
-		*outSubor << endl;
-		*outSubor << (*ucastPercent_)[kolo];
-		*outSubor << endl;
-		*outSubor << (*odovzdaneObalky_)[kolo];
-		*outSubor << endl;
-		*outSubor << (*platneHlasy_)[kolo];
-		*outSubor << endl;
-	}
-}
-
 
 string UzemnaJednotka::dajNazov()
 {

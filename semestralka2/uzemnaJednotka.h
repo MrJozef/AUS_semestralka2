@@ -8,7 +8,7 @@ using namespace std;
 class UzemnaJednotka
 {
 private:
-	
+	string nazov_;
 	structures::Array<int>* zapisaniVolici_;
 	structures::Array<int>* vydaneObalky_;
 	structures::Array<double>* ucastPercent_;
@@ -16,9 +16,6 @@ private:
 	structures::Array<int>* platneHlasy_;
 
 public:
-	string nazov_;	//todo toto private!
-	void toSubor(fstream* outSubor);
-
 	///<summary>Konštruktor pre naèítavanie zo súboru</summary>
 	UzemnaJednotka(fstream* inSubor);
 	~UzemnaJednotka();
@@ -29,5 +26,4 @@ public:
 private:
 	///<summary>Metóda, ktorá naèíta objekt zo súboru, volaná konštruktorom</summary>
 	void fromSubor(fstream* inSubor);
-
 };
