@@ -21,9 +21,18 @@ public:
 	~UzemnaJednotka();
 
 	string dajNazov();
+	int dajZapisVolicov(int kolo);
+	int dajVydaneObalky(int kolo);
+	double dajUcastVPercent(int kolo);
+	int dajOdovzdaneObalky(int kolo);
+	int dajPlatneHlasy(int kolo);
+
 	///<summary>Metóda, ktorá vráti pointer na vyššiu územnu jednotku do kt. patrí, napr. Okres vráti pointer na Kraj</summary>
 	virtual UzemnaJednotka* dajVyssiuJednotku() = 0;
 private:
 	///<summary>Metóda, ktorá naèíta objekt zo súboru, volaná konštruktorom</summary>
 	void fromSubor(fstream* inSubor);
+
+	///<summary>Overí, èi takéto kolo prebehlo (èíslované od 0) - napr. ak mame 2 kola, tak su povolene hodnoty - 0 a 1</summary>
+	bool overKolo(int kolo);
 };

@@ -40,7 +40,57 @@ void UzemnaJednotka::fromSubor(fstream* inSubor)
 	}
 }
 
+bool UzemnaJednotka::overKolo(int kolo)
+{
+	return (kolo >= 0 && kolo < POCET_KOL);
+}
+
 string UzemnaJednotka::dajNazov()
 {
 	return nazov_;
+}
+
+int UzemnaJednotka::dajZapisVolicov(int kolo)
+{
+	if (overKolo(kolo))
+	{
+		return (*zapisaniVolici_)[kolo];
+	}
+	return -1;
+}
+
+int UzemnaJednotka::dajVydaneObalky(int kolo)
+{
+	if (overKolo(kolo))
+	{
+		return (*vydaneObalky_)[kolo];
+	}
+	return -1;
+}
+
+double UzemnaJednotka::dajUcastVPercent(int kolo)
+{
+	if (overKolo(kolo))
+	{
+		return (*ucastPercent_)[kolo];
+	}
+	return -1;
+}
+
+int UzemnaJednotka::dajOdovzdaneObalky(int kolo)
+{
+	if (overKolo(kolo))
+	{
+		return (*odovzdaneObalky_)[kolo];
+	}
+	return -1;
+}
+
+int UzemnaJednotka::dajPlatneHlasy(int kolo)
+{
+	if (overKolo(kolo))
+	{
+		return (*platneHlasy_)[kolo];
+	}
+	return -1;
 }
