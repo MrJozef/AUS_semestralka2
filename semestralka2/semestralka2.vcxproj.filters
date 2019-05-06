@@ -92,6 +92,30 @@
     <ClInclude Include="system.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="kriterium.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kNazov.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kZapisaniVolici.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kUcast.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kVydaneObalky.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kOdovzdaneObalky.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kPlatneHlasy.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="kPrislusnostObce.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\data\spracovavane_data_2.txt">

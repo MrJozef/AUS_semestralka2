@@ -135,7 +135,15 @@
     <ClInclude Include="..\structures\structure_iterator.h" />
     <ClInclude Include="..\structures\vector\vector.h" />
     <ClInclude Include="const.h" />
+    <ClInclude Include="kNazov.h" />
+    <ClInclude Include="kOdovzdaneObalky.h" />
+    <ClInclude Include="kPlatneHlasy.h" />
+    <ClInclude Include="kPrislusnostObce.h" />
     <ClInclude Include="kraj.h" />
+    <ClInclude Include="kriterium.h" />
+    <ClInclude Include="kUcast.h" />
+    <ClInclude Include="kVydaneObalky.h" />
+    <ClInclude Include="kZapisaniVolici.h" />
     <ClInclude Include="obec.h" />
     <ClInclude Include="okres.h" />
     <ClInclude Include="system.h" />

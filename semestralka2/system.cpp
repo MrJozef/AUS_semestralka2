@@ -1,6 +1,13 @@
 #include "../structures/heap_monitor.h"
 #include "system.h"
-#include <iostream>
+
+#include "kNazov.h"
+#include "kZapisaniVolici.h"
+#include "kUcast.h"
+#include "kVydaneObalky.h"
+#include "kOdovzdaneObalky.h"
+#include "kPlatneHlasy.h"
+#include "kPrislusnostObce.h"
 
 
 System::System(fstream* inSubor)
@@ -54,6 +61,25 @@ System::System(fstream* inSubor)
 
 		obce_->add(new Obec(inSubor, (*okresy_)[cisVysJednotky]));
 	}
+
+	KNazov* kriteriumNaNazov = new KNazov();
+	cout << kriteriumNaNazov->ohodnot((*obce_)[2]) << endl;
+	KZapisaniVolici* kriteriumVolici = new KZapisaniVolici(obe);
+	cout << kriteriumVolici->ohodnot((*kraje_)[2]) << endl;
+	KUcast* kriteriumUcast = new KUcast(obe);
+	cout << kriteriumUcast->ohodnot((*kraje_)[2]) << endl;
+
+	KVydaneObalky* kriteriumVydaneObalky = new KVydaneObalky(obe);
+	cout << kriteriumVydaneObalky->ohodnot((*okresy_)[0]) << endl;
+
+	KOdovzdaneObalky* kriteriumOdovzdaneObalky = new KOdovzdaneObalky(obe);
+	cout << kriteriumOdovzdaneObalky->ohodnot((*okresy_)[0]) << endl;
+
+	KPlatneHlasy* kriteriumPlatneHlasy = new KPlatneHlasy(obe);
+	cout << kriteriumPlatneHlasy->ohodnot((*okresy_)[4]) << endl;
+	KPrislusnostObce* kriteriumPrislusnost = new KPrislusnostObce((*kraje_)[7]);
+	if (kriteriumPrislusnost->ohodnot((*obce_)[2925]))
+		cout << "Patrim" << endl;
 }
 
 

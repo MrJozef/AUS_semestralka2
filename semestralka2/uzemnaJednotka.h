@@ -18,7 +18,7 @@ private:
 public:
 	///<summary>Konštruktor pre naèítavanie zo súboru</summary>
 	UzemnaJednotka(fstream* inSubor);
-	~UzemnaJednotka();
+	virtual ~UzemnaJednotka();
 
 	string dajNazov();
 	int dajZapisVolicov(int kolo);
