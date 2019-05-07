@@ -118,6 +118,7 @@
   <ItemGroup>
     <ClCompile Include="..\structures\ds_routines.cpp" />
     <ClCompile Include="..\structures\structure.cpp" />
+    <ClCompile Include="..\structures\table\sorting\sort.cpp" />
     <ClCompile Include="..\structures\vector\vector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="system.cpp" />
@@ -133,6 +134,11 @@
     <ClInclude Include="..\structures\list\list.h" />
     <ClInclude Include="..\structures\structure.h" />
     <ClInclude Include="..\structures\structure_iterator.h" />
+    <ClInclude Include="..\structures\table\sequence_table.h" />
+    <ClInclude Include="..\structures\table\sorting\shell_sort.h" />
+    <ClInclude Include="..\structures\table\sorting\sort.h" />
+    <ClInclude Include="..\structures\table\table.h" />
+    <ClInclude Include="..\structures\table\unsorted_sequence_table.h" />
     <ClInclude Include="..\structures\vector\vector.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="kNazov.h" />

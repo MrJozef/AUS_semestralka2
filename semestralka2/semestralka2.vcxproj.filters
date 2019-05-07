@@ -22,6 +22,12 @@
     <Filter Include="structures\list">
       <UniqueIdentifier>{3f2825f5-097b-458e-b6a4-a753d069b17f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="structures\table">
+      <UniqueIdentifier>{5d34bdd8-e315-49ae-9729-bc3ee34c7b94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="structures\table\sorting">
+      <UniqueIdentifier>{daccf804-51f2-4b9b-937f-f62dc1e55849}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\structures\ds_routines.cpp">
@@ -41,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="system.cpp">
       <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\structures\table\sorting\sort.cpp">
+      <Filter>structures\table\sorting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +124,21 @@
     </ClInclude>
     <ClInclude Include="kPrislusnostObce.h">
       <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\table\sequence_table.h">
+      <Filter>structures\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\table\table.h">
+      <Filter>structures\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\table\unsorted_sequence_table.h">
+      <Filter>structures\table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\table\sorting\sort.h">
+      <Filter>structures\table\sorting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\structures\table\sorting\shell_sort.h">
+      <Filter>structures\table\sorting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
