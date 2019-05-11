@@ -67,8 +67,19 @@ System::System(fstream* inSubor)
 
 	filterNazov_ = new FNazov();
 	filterVolici_ = new FZapisaniVolici();
-	filterUcast = new FUcast();
+	filterUcast_ = new FUcast();
 	filterPrislusnost_ = new FPrislusnostObce();
+
+	//todo zmazat tieto skusky
+	kriteriumVolici_->set(prve);
+	filterVolici_->set(400000, 450000);
+	if (filterVolici_->ohodnot((*kraje_)[1], kriteriumVolici_))
+		cout << "Kraj ma stanovenu ucast volicov!" << endl;
+
+	kriteriumPrislusnost_->set((*okresy_)[0]);
+	filterPrislusnost_->set(true);
+	if (filterPrislusnost_->ohodnot((*obce_)[1], kriteriumPrislusnost_))
+		cout << "patri!" << endl;
 }
 
 
@@ -107,4 +118,20 @@ System::~System()
 	delete kriteriumOdovzdaneObalky_;
 	delete kriteriumPlatneHlasy_;
 	delete kriteriumPrislusnost_;
+	kriteriumNazov_ = nullptr;
+	kriteriumVolici_ = nullptr;
+	kriteriumVydaneObalky_ = nullptr;
+	kriteriumUcast_ = nullptr;
+	kriteriumOdovzdaneObalky_ = nullptr;
+	kriteriumPlatneHlasy_ = nullptr;
+	kriteriumPrislusnost_ = nullptr;
+
+	delete filterNazov_;
+	delete filterVolici_;
+	delete filterUcast_;
+	delete filterPrislusnost_;
+	filterNazov_ = nullptr;
+	filterVolici_ = nullptr;
+	filterUcast_ = nullptr;
+	filterPrislusnost_ = nullptr;
 }

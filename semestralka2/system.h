@@ -34,7 +34,7 @@ private:
 
 	FNazov* filterNazov_;
 	FZapisaniVolici* filterVolici_;
-	FUcast* filterUcast;
+	FUcast* filterUcast_;
 	FPrislusnostObce* filterPrislusnost_;
 
 public:

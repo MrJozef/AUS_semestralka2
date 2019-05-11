@@ -12,7 +12,7 @@ public:
 	Filter();
 	virtual ~Filter();
 	///<summary>Táto metóda vráti True/False objektu O, podla zvoleneho kriteria</summary>
-	virtual bool ohodnot(O objekt, Kriterium<T, O> kriterium) = 0;
+	virtual bool ohodnot(O objekt, Kriterium<T, O>* kriterium) = 0;
 };
 
 template <typename T, typename O>

@@ -14,7 +14,7 @@ public:
 	FilterJednoParam();
 	~FilterJednoParam();
 
-	bool ohodnot(O objekt, Kriterium<T, O> kriterium) override;
+	bool ohodnot(O objekt, Kriterium<T, O>* kriterium) override;
 	void set(T alfa);
 };
 
@@ -29,9 +29,9 @@ FilterJednoParam<T, O>::~FilterJednoParam()
 }
 
 template <typename T, typename O>
-bool FilterJednoParam<T, O>::ohodnot(O objekt, Kriterium<T, O> kriterium)
+bool FilterJednoParam<T, O>::ohodnot(O objekt, Kriterium<T, O>* kriterium)
 {
-	return kriterium.ohodnot(objekt) == alfa_;
+	return kriterium->ohodnot(objekt) == alfa_;
 }
 
 template <typename T, typename O>

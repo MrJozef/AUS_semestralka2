@@ -15,7 +15,8 @@ public:
 	FilterDvojParam();
 	~FilterDvojParam();
 
-	bool ohodnot(O objekt, Kriterium<T, O> kriterium) override;
+	bool ohodnot(O objekt, Kriterium<T, O>* kriterium) override;
+	///<summary>alfa je mensia nanajvys rovna bete</summary>
 	void set(T alfa, T beta);
 };
 
@@ -30,15 +31,22 @@ FilterDvojParam<T, O>::~FilterDvojParam()
 }
 
 template <typename T, typename O>
-bool FilterDvojParam<T, O>::ohodnot(O objekt, Kriterium<T, O> kriterium)
+bool FilterDvojParam<T, O>::ohodnot(O objekt, Kriterium<T, O>* kriterium)
 {
-	T vysledok = kriterium.ohodnot(objekt);
+	T vysledok = kriterium->ohodnot(objekt);
 	return (vysledok <= beta_) && (vysledok >= alfa_);
 }
 
 template <typename T, typename O>
 void FilterDvojParam<T, O>::set(T alfa, T beta)
 {
-	alfa_ = alfa;
-	beta_ = beta;
+	if (alfa <= beta)
+	{
+		alfa_ = alfa;
+		beta_ = beta;
+	}
+	else
+	{
+		std::cout << "Chyba - Zle zadane parametre filtra (alfa > beta)!\nNic sa nenastavilo!\n";
+	}
 }
