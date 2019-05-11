@@ -141,6 +141,13 @@
     <ClInclude Include="..\structures\table\unsorted_sequence_table.h" />
     <ClInclude Include="..\structures\vector\vector.h" />
     <ClInclude Include="const.h" />
+    <ClInclude Include="filter.h" />
+    <ClInclude Include="filterDvojParam.h" />
+    <ClInclude Include="filterJednoParam.h" />
+    <ClInclude Include="fNazov.h" />
+    <ClInclude Include="fPrislusnostObce.h" />
+    <ClInclude Include="fUcast.h" />
+    <ClInclude Include="fZapisaniVolici.h" />
     <ClInclude Include="kNazov.h" />
     <ClInclude Include="kOdovzdaneObalky.h" />
     <ClInclude Include="kPlatneHlasy.h" />

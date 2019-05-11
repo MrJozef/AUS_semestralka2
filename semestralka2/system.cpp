@@ -1,14 +1,6 @@
 #include "../structures/heap_monitor.h"
 #include "system.h"
 
-#include "kNazov.h"
-#include "kZapisaniVolici.h"
-#include "kUcast.h"
-#include "kVydaneObalky.h"
-#include "kOdovzdaneObalky.h"
-#include "kPlatneHlasy.h"
-#include "kPrislusnostObce.h"
-
 
 System::System(fstream* inSubor)
 {
@@ -62,24 +54,21 @@ System::System(fstream* inSubor)
 		obce_->add(new Obec(inSubor, (*okresy_)[cisVysJednotky]));
 	}
 
-	KNazov* kriteriumNaNazov = new KNazov();
-	cout << kriteriumNaNazov->ohodnot((*obce_)[2]) << endl;
-	KZapisaniVolici* kriteriumVolici = new KZapisaniVolici(obe);
-	cout << kriteriumVolici->ohodnot((*kraje_)[2]) << endl;
-	KUcast* kriteriumUcast = new KUcast(obe);
-	cout << kriteriumUcast->ohodnot((*kraje_)[2]) << endl;
 
-	KVydaneObalky* kriteriumVydaneObalky = new KVydaneObalky(obe);
-	cout << kriteriumVydaneObalky->ohodnot((*okresy_)[0]) << endl;
+	//pripravenie vsetkych kriterii a filtrov
 
-	KOdovzdaneObalky* kriteriumOdovzdaneObalky = new KOdovzdaneObalky(obe);
-	cout << kriteriumOdovzdaneObalky->ohodnot((*okresy_)[0]) << endl;
+	kriteriumNazov_ = new KNazov();
+	kriteriumVolici_ = new KZapisaniVolici();
+	kriteriumVydaneObalky_ = new KVydaneObalky();
+	kriteriumUcast_ = new KUcast();
+	kriteriumOdovzdaneObalky_ = new KOdovzdaneObalky();
+	kriteriumPlatneHlasy_ = new KPlatneHlasy();
+	kriteriumPrislusnost_ = new KPrislusnostObce();
 
-	KPlatneHlasy* kriteriumPlatneHlasy = new KPlatneHlasy(obe);
-	cout << kriteriumPlatneHlasy->ohodnot((*okresy_)[4]) << endl;
-	KPrislusnostObce* kriteriumPrislusnost = new KPrislusnostObce((*kraje_)[7]);
-	if (kriteriumPrislusnost->ohodnot((*obce_)[2925]))
-		cout << "Patrim" << endl;
+	filterNazov_ = new FNazov();
+	filterVolici_ = new FZapisaniVolici();
+	filterUcast = new FUcast();
+	filterPrislusnost_ = new FPrislusnostObce();
 }
 
 
@@ -108,4 +97,14 @@ System::~System()
 	kraje_ = nullptr;
 	okresy_ = nullptr;
 	obce_ = nullptr;
+
+
+	//delete kriterii a filtrov
+	delete kriteriumNazov_;
+	delete kriteriumVolici_;
+	delete kriteriumVydaneObalky_;
+	delete kriteriumUcast_;
+	delete kriteriumOdovzdaneObalky_;
+	delete kriteriumPlatneHlasy_;
+	delete kriteriumPrislusnost_;
 }

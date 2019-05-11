@@ -6,18 +6,20 @@
 class KVydaneObalky: public Kriterium<int, UzemnaJednotka*>
 {
 private:
-	Kolo kolo_;		//todo setter
+	Kolo kolo_;
 
 public:
-	KVydaneObalky(Kolo kolo);
+	KVydaneObalky();
 	~KVydaneObalky();
 
 	int ohodnot(UzemnaJednotka* objekt) override;
+	///<summary>V konštruktore sa nastaví defaultná hodnota attr. kolo_, pomocou tejto metody si mozeme nastavit kolo, ako chceme</summary>
+	void set(Kolo kolo);
 };
 
-inline KVydaneObalky::KVydaneObalky(Kolo kolo)
+inline KVydaneObalky::KVydaneObalky()
 {
-	kolo_ = kolo;
+	kolo_ = prve;
 }
 
 inline KVydaneObalky::~KVydaneObalky()
@@ -31,4 +33,9 @@ inline int KVydaneObalky::ohodnot(UzemnaJednotka* objekt)
 		return objekt->dajVydaneObalky(kolo_);
 	}
 	return objekt->dajVydaneObalky(prve) + objekt->dajVydaneObalky(druhe);
+}
+
+inline void KVydaneObalky::set(Kolo kolo)
+{
+	kolo_ = kolo;
 }

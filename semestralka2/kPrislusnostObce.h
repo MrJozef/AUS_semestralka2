@@ -7,18 +7,19 @@
 class KPrislusnostObce: public Kriterium<bool, Obec*>
 {
 private:
-	UzemnaJednotka* vyssiCelok_;			//todo setter
+	UzemnaJednotka* vyssiCelok_;
 
 public:
-	KPrislusnostObce(UzemnaJednotka* vyssiCelok);
+	KPrislusnostObce();
 	~KPrislusnostObce();
 
 	bool ohodnot(Obec* objekt) override;
+	void set(UzemnaJednotka* vyssiCelok);
 };
 
-inline KPrislusnostObce::KPrislusnostObce(UzemnaJednotka* vyssiCelok)
+inline KPrislusnostObce::KPrislusnostObce()
 {
-	vyssiCelok_ = vyssiCelok;
+	vyssiCelok_ = nullptr;
 }
 
 inline KPrislusnostObce::~KPrislusnostObce()
@@ -28,4 +29,9 @@ inline KPrislusnostObce::~KPrislusnostObce()
 inline bool KPrislusnostObce::ohodnot(Obec* objekt)
 {
 	return objekt->dajVyssiuJednotku() == vyssiCelok_ || objekt->dajVyssiuJednotku()->dajVyssiuJednotku() == vyssiCelok_;
+}
+
+inline void KPrislusnostObce::set(UzemnaJednotka* vyssiCelok)
+{
+	vyssiCelok_ = vyssiCelok;
 }

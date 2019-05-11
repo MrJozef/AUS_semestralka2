@@ -28,6 +28,12 @@
     <Filter Include="structures\table\sorting">
       <UniqueIdentifier>{daccf804-51f2-4b9b-937f-f62dc1e55849}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\kriteria">
+      <UniqueIdentifier>{0e2d5289-6bb8-4f94-b9fe-ec86762a483d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\filtre">
+      <UniqueIdentifier>{c1d92169-f4b2-41e8-91fc-88d23b65cd5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\structures\ds_routines.cpp">
@@ -101,30 +107,6 @@
     <ClInclude Include="system.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="kriterium.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kNazov.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kZapisaniVolici.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kUcast.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kVydaneObalky.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kOdovzdaneObalky.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kPlatneHlasy.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="kPrislusnostObce.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\structures\table\sequence_table.h">
       <Filter>structures\table</Filter>
     </ClInclude>
@@ -139,6 +121,51 @@
     </ClInclude>
     <ClInclude Include="..\structures\table\sorting\shell_sort.h">
       <Filter>structures\table\sorting</Filter>
+    </ClInclude>
+    <ClInclude Include="kNazov.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kOdovzdaneObalky.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kPlatneHlasy.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kPrislusnostObce.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kriterium.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kUcast.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kVydaneObalky.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="kZapisaniVolici.h">
+      <Filter>Header files\kriteria</Filter>
+    </ClInclude>
+    <ClInclude Include="filter.h">
+      <Filter>Header files\filtre</Filter>
+    </ClInclude>
+    <ClInclude Include="filterDvojParam.h">
+      <Filter>Header files\filtre</Filter>
+    </ClInclude>
+    <ClInclude Include="filterJednoParam.h">
+      <Filter>Header files\filtre</Filter>
+    </ClInclude>
+    <ClInclude Include="fNazov.h">
+      <Filter>Header files\filtre</Filter>
+    </ClInclude>
+    <ClInclude Include="fPrislusnostObce.h">
+      <Filter>Header files\filtre</Filter>
+    </ClInclude>
+    <ClInclude Include="fUcast.h">
+      <Filter>Header files\filtre</Filter>
+    </ClInclude>
+    <ClInclude Include="fZapisaniVolici.h">
+      <Filter>Header files\filtre</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

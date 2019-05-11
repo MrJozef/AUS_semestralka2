@@ -6,27 +6,19 @@
 class KZapisaniVolici: public Kriterium<int, UzemnaJednotka*>
 {
 private:
-	Kolo kolo_;		//todo setter doplnit?
+	Kolo kolo_;
 
 public:
-	///<summary>Konštruktor oèakáva kolo</summary>
-	KZapisaniVolici(Kolo kolo);
+	KZapisaniVolici();
 	~KZapisaniVolici();
 
 	int ohodnot(UzemnaJednotka* objekt) override;
+	void set(Kolo kolo);
 };
 
-inline KZapisaniVolici::KZapisaniVolici(Kolo kolo)
+inline KZapisaniVolici::KZapisaniVolici()
 {
-	if (kolo == prve || kolo == druhe)
-	{
-		kolo_ = kolo;
-	}
-	else
-	{
-		std::cout << "Chyba - Toto kriterium nepodporuje moznost 'obe'!\nBolo pouzite defaulte nastavenie - prve kolo\n";
-		kolo_ = prve;
-	}
+	kolo_ = prve;
 }
 
 
@@ -37,4 +29,17 @@ inline KZapisaniVolici::~KZapisaniVolici()
 inline int KZapisaniVolici::ohodnot(UzemnaJednotka* objekt)
 {
 	return objekt->dajZapisVolicov(kolo_);
+}
+
+inline void KZapisaniVolici::set(Kolo kolo)
+{
+	if (kolo == prve || kolo == druhe)
+	{
+		kolo_ = kolo;
+	}
+	else
+	{
+		std::cout << "Chyba - Toto kriterium nepodporuje moznost 'obe'!\nBolo pouzite defaulte nastavenie - prve kolo\n";
+		kolo_ = prve;
+	}
 }
