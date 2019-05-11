@@ -4,7 +4,7 @@
 #include "../structure_iterator.h"
 #include "../ds_structure_types.h"
 
-//todo DELETE?
+
 namespace structures
 {
 

@@ -173,17 +173,12 @@ namespace structures
 		}
 	}
 
+	//tento insert upraveny, pretoze mame zarucene, ze sa kluce prvkov neopakuju
 	template<typename K, typename T>
 	inline void SequenceTable<K, T>::insert(const K & key, const T & data)
 	{
-		if (!containsKey(key)) {
-			TableItem<K, T>* tableItem = new TableItem<K, T>(key, data);
-			list_->add(tableItem);
-		}
-		else
-		{
-			throw std::logic_error("SequenceTable<K, T>::insert: Key already present in the table");
-		}
+		TableItem<K, T>* tableItem = new TableItem<K, T>(key, data);
+		list_->add(tableItem);
 	}
 
 	template<typename K, typename T>
@@ -228,11 +223,11 @@ namespace structures
 	template<typename K, typename T>
 	inline void SequenceTable<K, T>::clear()			//todo tu je rozdiel
 	{
-		for (auto item : *list_)
+		for (auto item : *this)
 		{
 			delete item;
-			item = nullptr;
 		}
+		list_->clear();
 	}
 
 	template<typename K, typename T>

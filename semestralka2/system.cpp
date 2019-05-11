@@ -39,8 +39,9 @@ System::System(fstream* inSubor)
 
 	staraUzJednotka = "";
 	cisVysJednotky = -1;
+	Obec* pomSmernik;
 
-	obce_ = new structures::LinkedList<Obec*>;
+	obce_ = new structures::UnsortedSequenceTable<std::string, Obec*>(pocetObci);
 	for (int i = 0; i < pocetObci; i++)
 	{
 		inSubor->ignore();
@@ -51,9 +52,9 @@ System::System(fstream* inSubor)
 			cisVysJednotky++;
 		}
 
-		obce_->add(new Obec(inSubor, (*okresy_)[cisVysJednotky]));
+		pomSmernik = new Obec(inSubor, (*okresy_)[cisVysJednotky]);
+		obce_->insert(pomSmernik->dajNazov(), pomSmernik);
 	}
-
 
 	//pripravenie vsetkych kriterii a filtrov
 
@@ -71,7 +72,7 @@ System::System(fstream* inSubor)
 	filterPrislusnost_ = new FPrislusnostObce();
 
 	//todo zmazat tieto skusky
-	kriteriumVolici_->set(prve);
+	/*kriteriumVolici_->set(prve);
 	filterVolici_->set(400000, 450000);
 	if (filterVolici_->ohodnot((*kraje_)[1], kriteriumVolici_))
 		cout << "Kraj ma stanovenu ucast volicov!" << endl;
@@ -79,7 +80,7 @@ System::System(fstream* inSubor)
 	kriteriumPrislusnost_->set((*okresy_)[0]);
 	filterPrislusnost_->set(true);
 	if (filterPrislusnost_->ohodnot((*obce_)[1], kriteriumPrislusnost_))
-		cout << "patri!" << endl;
+		cout << "patri!" << endl;*/
 }
 
 
@@ -99,9 +100,10 @@ System::~System()
 	}
 	delete okresy_;
 
-	for (Obec* obec : *obce_)
+	pom = static_cast<int>(obce_->size());
+	for (int i = 0; i < pom; i++)
 	{
-		delete obec;
+		delete obce_->getItemAtIndex(i).accessData();
 	}
 	delete obce_;
 
@@ -134,4 +136,72 @@ System::~System()
 	filterVolici_ = nullptr;
 	filterUcast_ = nullptr;
 	filterPrislusnost_ = nullptr;
+}
+
+void System::filtKraje(string nazovKraja)
+{
+	int pom = kraje_->size();
+	filterNazov_->set(nazovKraja);
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterNazov_->ohodnot((*kraje_)[i], kriteriumNazov_))
+		{
+			plnyVypis((*kraje_)[i]);
+			break;
+		}
+	}
+}//todo doplnit ak nic nenaslo tak - nenasiel sa s danym nazvom..
+
+void System::filtOkresy(string nazovOkresu)
+{
+	int pom = okresy_->size();
+	filterNazov_->set(nazovOkresu);
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterNazov_->ohodnot((*okresy_)[i], kriteriumNazov_))
+		{
+			plnyVypis((*okresy_)[i]);
+			break;
+		}
+	}
+}
+
+void System::filtObce(string nazovObce)
+{
+	int pom = obce_->size();
+	Obec* pomObec;
+	filterNazov_->set(nazovObce);
+	if (obce_->tryFind(nazovObce, pomObec))
+	{
+		plnyVypis(pomObec);
+	}
+}
+
+void System::plnyVypis(UzemnaJednotka* uzJednotka)
+{
+	cout << kriteriumNazov_->ohodnot(uzJednotka);
+
+	if (uzJednotka->dajVyssiuJednotku() != nullptr)
+	{
+		cout << "  ->  " << kriteriumNazov_->ohodnot(uzJednotka->dajVyssiuJednotku());
+
+		if (uzJednotka->dajVyssiuJednotku()->dajVyssiuJednotku() != nullptr)
+		{
+			cout << "  ->  " << kriteriumNazov_->ohodnot(uzJednotka->dajVyssiuJednotku()->dajVyssiuJednotku());
+		}
+	}
+
+	for (int i = 0; i < POCET_KOL; i++)
+	{
+		kriteriumVolici_->set(static_cast<Kolo>(i));
+		cout << "\n\nKolo: " << (i + 1) << ".\nPocet volicov:  " << kriteriumVolici_->ohodnot(uzJednotka) << endl;
+		kriteriumVydaneObalky_->set(static_cast<Kolo>(i));
+		cout << "Vydane obalky:  " << kriteriumVydaneObalky_->ohodnot(uzJednotka) << endl;
+		kriteriumUcast_->set(static_cast<Kolo>(i));
+		cout << "Ucast dosiahla:  " << kriteriumUcast_->ohodnot(uzJednotka) << "%" << endl;
+		kriteriumOdovzdaneObalky_->set(static_cast<Kolo>(i));
+		cout << "Odovzdane obalky:  " << kriteriumOdovzdaneObalky_->ohodnot(uzJednotka) << endl;
+		kriteriumPlatneHlasy_->set(static_cast<Kolo>(i));
+		cout << "Platne hlasy:  " << kriteriumPlatneHlasy_->ohodnot(uzJednotka) << endl;
+	}
 }

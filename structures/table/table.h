@@ -16,8 +16,8 @@ namespace structures
 		/// <param name = "data"> Data, ktore uchovava. </param>
 		TableItem(K key, T data);
 
-		/// <summary> Kopirovaci konstruktor. </summary>
-		TableItem(const TableItem& other);
+		/*/// <summary> Kopirovaci konstruktor. </summary>
+		TableItem(const TableItem& other);*/
 
 		/// <summary> Getter atributu kluc. </summary>
 		/// <returns> Kluc. </returns>
@@ -113,7 +113,7 @@ namespace structures
 	{
 	}
 
-	template<typename K, typename T>
+	/*template<typename K, typename T>
 	inline TableItem<K, T>::TableItem(const TableItem & other)
 	{
 		if (this != &other) {
@@ -121,7 +121,7 @@ namespace structures
 			this->data_ = other.data_;
 		}
 		return *this;
-	}
+	}*/
 
 	template<typename K, typename T>
 	inline K TableItem<K, T>::getKey()

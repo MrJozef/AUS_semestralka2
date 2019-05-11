@@ -15,6 +15,9 @@ namespace structures
 		/// <summary> Konstruktor. </summary>
 		UnsortedSequenceTable();
 
+		/// <summary> Konstruktor, kt vytvori ArrayList (na ktorom je postavena tabulka) pre presny pocet prvkov. </summary>
+		UnsortedSequenceTable(int pocetPrvkov);
+
 		/// <summary> Kopirovaci konstruktor. </summary>
 		/// <param name = "other"> NonortedSequenceTable, z ktorej sa prevezmu vlastnosti. </param>
 		UnsortedSequenceTable(const UnsortedSequenceTable<K, T>& other);
@@ -43,6 +46,12 @@ namespace structures
 	template<typename K, typename T>
 	inline UnsortedSequenceTable<K, T>::UnsortedSequenceTable() :
 		SequenceTable<K, T>(new ArrayList<TableItem<K, T>*>())
+	{
+	}
+
+	template<typename K, typename T>
+	inline UnsortedSequenceTable<K, T>::UnsortedSequenceTable(int pocetPrvkov) :
+		SequenceTable<K, T>(new ArrayList<TableItem<K, T>*>(pocetPrvkov))
 	{
 	}
 

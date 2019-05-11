@@ -4,7 +4,7 @@
 #include "../structure_iterator.h"
 #include "../array/array.h"
 
-//todo DELETE?
+
 namespace structures
 {
 
@@ -16,6 +16,9 @@ namespace structures
 	public:
 		/// <summary> Konstruktor. </summary>
 		ArrayList();
+
+		/// <summary> Konstruktor, vytvori pole (na kt. je postaveny ArrayList) pre presny pocet prvkov. </summary>
+		ArrayList(int pocetPrvkov);
 
 		/// <summary> Kopirovaci konstruktor. </summary>
 		/// <param name = "other"> ArrayList, z ktoreho sa prevezmu vlastnosti. </param>
@@ -144,6 +147,14 @@ namespace structures
 	inline ArrayList<T>::ArrayList() :
 		List(),
 		array_(new Array<T>(4)),
+		size_(0)
+	{
+	}
+
+	template<typename T>
+	inline ArrayList<T>::ArrayList(int pocetPrvkov) :
+		List(),
+		array_(new Array<T>(pocetPrvkov)),
 		size_(0)
 	{
 	}

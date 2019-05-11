@@ -1,6 +1,7 @@
 #pragma once
 #include "../structures/heap_monitor.h"
 #include "../structures/list/linked_list.h"
+#include "../structures/table/unsorted_sequence_table.h"
 #include "kraj.h"
 #include "okres.h"
 #include "obec.h"
@@ -19,10 +20,9 @@
 class System
 {
 private:
-	//todo docasne struktury
 	structures::Array<Kraj*>* kraje_;
 	structures::Array<Okres*>* okresy_;
-	structures::LinkedList<Obec*>* obce_;
+	structures::UnsortedSequenceTable<std::string, Obec*>* obce_;
 
 	KNazov* kriteriumNazov_;
 	KZapisaniVolici* kriteriumVolici_;
@@ -41,4 +41,15 @@ public:
 	///<summary>Konštruktor pre naèítavanie zo súboru</summary>
 	System(fstream* inSubor);
 	~System();
+
+	///<summary>Funkcionalita 3 - filter podla nazvu pre kraje</summary>
+	void filtKraje(string nazovKraja);
+	///<summary>Funkcionalita 3 - filter podla nazvu pre kraje</summary>
+	void filtOkresy(string nazovOkresu);
+	///<summary>Funkcionalita 3 - filter podla nazvu pre kraje</summary>
+	void filtObce(string nazovObce);
+	///<summary>Vypise vsetky informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 3</summary>
+	void plnyVypis(UzemnaJednotka* uzJednotka);
+
+	
 };

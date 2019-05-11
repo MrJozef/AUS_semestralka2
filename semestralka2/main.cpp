@@ -49,12 +49,32 @@ int main()
 				switch(nacitajCeleKladneCisMensieRovne(POCET_POUZIT_FILTROV, false))
 				{
 				case 1:
-					cout << "Zadajte nazov obce (popr. okresu alebo kraja), kt. chcete vyhladat:" << endl;
-					zadavam();
-					getline(std::cin, pom);
+					cout << "Chcete hladat:\n  1) Kraj\n  2) Okres\n  3) Obec\n" << endl;
 
-					//todo 
-
+					switch (nacitajCeleKladneCisMensieRovne(POCET_TYPOV_UZEM_JEDNOTIEK, false))
+					{
+					case 1:
+						cout << "Zadajte nazov kraja:" << endl;
+						zadavam();
+						cin.ignore();
+						getline(std::cin, pom);
+						sys->filtKraje(pom);
+						break;
+					case 2:
+						cout << "Zadajte nazov okresu:" << endl;
+						zadavam();
+						cin.ignore();
+						getline(std::cin, pom);
+						sys->filtOkresy(pom);
+						break;
+					case 3:
+						cout << "Zadajte nazov obce:" << endl;
+						zadavam();
+						cin.ignore();
+						getline(std::cin, pom);
+						sys->filtObce(pom);
+						break;
+					}
 					break;
 
 				case 2:
@@ -85,6 +105,7 @@ int main()
 					else { cout << "Chyba - Nespravne zadany inteval!" << endl; }
 					break;
 				}
+				zadavamEnter();
 				break;
 
 
