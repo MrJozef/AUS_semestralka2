@@ -5,6 +5,13 @@
 
 using namespace std;
 
+void zadavam();
+void zadavamEnter();
+int nacitajCeleKladneCisMensieRovne(int max, bool sNulou);
+int nacitajCeleKladneCislo();
+double nacitajKladneDouble();
+Kolo nacitajKoloVolieb();
+
 int main()
 {
 	initHeapMonitor();
@@ -17,19 +24,200 @@ int main()
 	if (subor->is_open())
 	{
 		sys = new System(subor);
-		cout << "Data boli uspesne nacitane!" << endl;
-
 		subor->close();
+
+		bool pokracovat = true;
+		string pom = "";
+		int pocetOd;
+		int pocetDo;
+		double ucastOd;
+		double ucastDo;
+		Kolo zvoleneKolo;
+
+		while (pokracovat)
+		{
+			system("cls");
+			cout << "  ~~  2. semestralna praca - Jozef Kubik  ~~\n\n";
+			cout << "  1) Vypisanie informacii o uzemnych jednotkach\n  2) Zoradenie prefiltrovanych uzemnych jednotiek\n";
+			cout << "  0) Koniec\n\n" << endl;
+
+			switch (nacitajCeleKladneCisMensieRovne(POCET_POLOZIEK_MENU, true))
+			{
+			case 1:
+				cout << "Uzemne jednotky chcete vyberat podla (filtra):\n  1) Nazvu\n  2) Zapisanych volicov\n  3) Ucasti\n" << endl;
+
+				switch(nacitajCeleKladneCisMensieRovne(POCET_POUZIT_FILTROV, false))
+				{
+				case 1:
+					cout << "Zadajte nazov obce (popr. okresu alebo kraja), kt. chcete vyhladat:" << endl;
+					zadavam();
+					getline(std::cin, pom);
+
+					//todo 
+
+					break;
+
+				case 2:
+					cout << "Zadajte interval poctu opravnenych volicov v tvare <OD, DO>\nOD:\n";
+					pocetOd = nacitajCeleKladneCislo();
+					cout << "\nDO:\n";
+					pocetDo = nacitajCeleKladneCislo();
+
+					if (pocetOd <= pocetDo)
+					{
+						zvoleneKolo = nacitajKoloVolieb();
+						//todo
+					}
+					else { cout << "Chyba - Nespravne zadany inteval!" << endl; }
+					break;
+
+				case 3:
+					cout << "Zadajte interval ucasti (v %) volicov na volbach v tvare <OD, DO>\nOD (znak % nepiste):\n";
+					ucastOd = nacitajKladneDouble();
+					cout << "\nDO (znak % nepiste):\n";
+					ucastDo = nacitajKladneDouble();
+
+					if (ucastOd <= ucastDo)
+					{
+						zvoleneKolo = nacitajKoloVolieb();
+						//todo 
+					}
+					else { cout << "Chyba - Nespravne zadany inteval!" << endl; }
+					break;
+				}
+				break;
+
+
+			case 2:
+				//todo
+				break;
+
+			case 0:
+			default:
+				pokracovat = false;
+			}
+		}
 	}
 	else
 	{
 		cout << "Chyba - Nepodarilo sa otvorit subor s datami!" << endl;
 	}
 
-	
+	cout << "\n\nKoniec programu - stlacte <Enter> pre ukoncenie" << endl;
+	cin.get();
+
 	delete subor;
 	delete sys;		//mozem bez obav deletovat nullptr
-
-	cin.get();
 	return 0;
+}
+
+void zadavam() { cout << ">> "; }
+
+void zadavamEnter() { cout << "Pre pokracovanie stlacte <Enter>\n"; cin.ignore(); zadavam(); }
+
+int nacitajCeleKladneCisMensieRovne(int max, bool sNulou)
+{
+	int cislo = nacitajCeleKladneCislo();
+
+	while ((cislo > max) || (!sNulou && cislo <= 0))
+	{
+
+		cout << "Zadane cislo nie je mensie, rovne " << to_string(max) << " a sucasne vacsie";
+		if (sNulou)
+		{
+			cout << ", rovne 0!" << endl;
+		}
+		else
+		{
+			cout << " ako 0!" << endl;
+		}
+
+		cislo = nacitajCeleKladneCislo();
+	}
+
+	return cislo;
+}
+
+int nacitajCeleKladneCislo()
+{
+	bool zlyVstup = false;
+	string pom;
+	cout << "Zadajte cele, kladne cislo:" << endl;
+	zadavam();
+	cin >> pom;
+
+	for (unsigned int i = 0; i < pom.size(); i++)
+	{
+		if (!(pom[i] >= '0' && pom[i] <= '9'))
+		{
+			zlyVstup = true;
+			break;
+		}
+	}
+
+	while (zlyVstup)
+	{
+		cout << "Zly vstup! Zadajte cele, kladne cislo:" << endl;
+		zadavam();
+		cin >> pom;
+		zlyVstup = false;
+
+		for (unsigned int i = 0; i < pom.size(); i++)
+		{
+			if (!(pom[i] >= '0' && pom[i] <= '9'))
+			{
+				zlyVstup = true;
+				break;
+			}
+		}
+	}
+
+	return stoi(pom);
+}
+
+double nacitajKladneDouble()
+{
+	bool zlyVstup = false;
+	string pom;
+	cout << "Zadajte desatinne cislo (pouzite des. bodku):" << endl;
+	zadavam();
+	cin >> pom;
+
+	for (unsigned int i = 0; i < pom.size(); i++)
+	{
+		if (!((pom[i] >= '0' && pom[i] <= '9') || pom[i] == '.'))
+		{
+			zlyVstup = true;
+			break;
+		}
+	}
+
+	while (zlyVstup)
+	{
+		cout << "Zly vstup! Zadajte desatinne cislo (pouzite des. bodku):" << endl;
+		zadavam();
+		cin >> pom;
+		zlyVstup = false;
+
+		for (unsigned int i = 0; i < pom.size(); i++)
+		{
+			if (!((pom[i] >= '0' && pom[i] <= '9') || pom[i] == '.'))
+			{
+				zlyVstup = true;
+				break;
+			}
+		}
+	}
+
+	return stod(pom);
+}
+
+Kolo nacitajKoloVolieb()
+{
+	cout << "Zadany interval sa vztahuje na:\n  1) 1. kolo volieb\n  2) 2. kolo volieb" << endl;
+	if (nacitajCeleKladneCisMensieRovne(POCET_KOL, false) == 1)
+	{
+		return prve;
+	}
+	return druhe;
 }
