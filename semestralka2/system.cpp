@@ -287,8 +287,10 @@ void System::zorad(SposobUsporiadania usporPodla, string nazovUzJednotky, TypUze
 			ShellSort.sort(*tabulkaNaTriedenie);
 			break;
 		case podla_volicov:
+			ShellSort.sortPodla(kriteriumVolici_, *tabulkaNaTriedenie);
 			break;
 		case podla_ucasti:
+			ShellSort.sortPodla(kriteriumUcast_, *tabulkaNaTriedenie);
 			break;
 		}
 
@@ -296,14 +298,14 @@ void System::zorad(SposobUsporiadania usporPodla, string nazovUzJednotky, TypUze
 		pom = tabulkaNaTriedenie->size();
 		for (int i = 0; i < pom; i++)
 		{
-			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo);
+			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo, usporPodla);
 		}
 		cout << "\n\n  ----------\n\n\n";
 
 		pom--;
 		for (int i = pom; i >= 0; i--)
 		{
-			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo);
+			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo, usporPodla);
 		}
 	}
 	else
@@ -342,7 +344,7 @@ void System::plnyVypis(UzemnaJednotka* uzJednotka)
 	cout << "----------\n\n";
 }
 
-void System::ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, Kolo kolo)
+void System::ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, Kolo kolo, SposobUsporiadania usporiadanie)
 {
 	kriteriumUcast_->set(kolo);
 	cout << kriteriumNazov_->ohodnot(uzJednotka);
@@ -350,6 +352,10 @@ void System::ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, 
 	if (typ == typ_kraj)
 	{
 		cout << "  ->  " << kriteriumNazov_->ohodnot(uzJednotka->dajVyssiuJednotku()->dajVyssiuJednotku());
+	}
+	if (usporiadanie == podla_volicov)
+	{
+		cout << "\n    pocet volicov: " << kriteriumVolici_->ohodnot(uzJednotka);
 	}
 	cout << "  -  ucast: " << kriteriumUcast_->ohodnot(uzJednotka);
 	cout << endl;

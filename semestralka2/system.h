@@ -59,6 +59,6 @@ public:
 	///<summary>Vypise vsetky informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 3</summary>
 	void plnyVypis(UzemnaJednotka* uzJednotka);
 	///<summary>Vypise ciastkove informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 4</summary>
-	void ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, Kolo kolo);
+	void ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, Kolo kolo, SposobUsporiadania usporiadanie);
 	
 };
