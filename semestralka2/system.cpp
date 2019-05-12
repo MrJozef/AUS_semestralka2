@@ -70,6 +70,7 @@ System::System(fstream* inSubor)
 	filterVolici_ = new FZapisaniVolici();
 	filterUcast_ = new FUcast();
 	filterPrislusnost_ = new FPrislusnostObce();
+	filterPrislusnost_->set(true);
 }
 
 
@@ -229,14 +230,12 @@ void System::filtUcasti(Kolo kolo, double percentOd, double percentDo)
 			plnyVypis((*obce_).getItemAtIndex(i).accessData());
 		}
 	}
-
-	zoradPodlaNazvu(obce_);
 }
 
 void System::zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo)
 {
 	auto* tabulkaNaTriedenie = new structures::UnsortedSequenceTable<std::string, Obec*>();
-	UzemnaJednotka* pointerNaJednotku;
+	UzemnaJednotka* pointerNaJednotku = nullptr;
 	if(typ == typ_kraj)
 	{
 		int pom = kraje_->size();
@@ -245,6 +244,7 @@ void System::zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, do
 			if (kriteriumNazov_->ohodnot((*kraje_)[i]) == nazovUzJednotky)
 			{
 				pointerNaJednotku = (*kraje_)[i];
+				break;
 			}
 		}
 	}
@@ -256,29 +256,49 @@ void System::zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, do
 			if (kriteriumNazov_->ohodnot((*okresy_)[i]) == nazovUzJednotky)
 			{
 				pointerNaJednotku = (*okresy_)[i];
+				break;
 			}
 		}
 	}
 
-	//mozeme pretriedit podla toho ci patria k danej vyssej jednotke
-}
-
-void System::zoradPodlaNazvu(structures::UnsortedSequenceTable<std::string, Obec*>* obceNaZorad)
-{
-	structures::ShellSort<string, Obec*> ShellSort;
-	ShellSort.sort(*obceNaZorad);
-
-	int pom = obceNaZorad->size();
-	for (int i = 0; i < pom; i++)
+	//pretriedujeme podla toho ci patria k danej vyssej jednotke
+	if (pointerNaJednotku != nullptr)
 	{
-		cout << kriteriumNazov_->ohodnot(obceNaZorad->getItemAtIndex(i).accessData()) << endl;
+		kriteriumPrislusnost_->set(pointerNaJednotku);
+		kriteriumUcast_->set(kolo);
+		filterUcast_->set(percentOd, percentDo);
+
+		int pom = obce_->size();
+		for (int i = 0; i < pom; i++)
+		{
+			//ak obec patri k zadanemu vyssieme uz. celku a sucasne ma ucast od - do
+			if (filterPrislusnost_->ohodnot((*obce_).getItemAtIndex(i).accessData(), kriteriumPrislusnost_) && filterUcast_->ohodnot((*obce_).getItemAtIndex(i).accessData(), kriteriumUcast_))
+			{
+				tabulkaNaTriedenie->insert((*obce_).getItemAtIndex(i).accessData()->dajNazov(), (*obce_).getItemAtIndex(i).accessData());
+			}
+		}
+
+		//sortovanie
+		structures::ShellSort<string, Obec*> ShellSort;
+		ShellSort.sort(*tabulkaNaTriedenie);
+
+		//vypis
+		pom = tabulkaNaTriedenie->size();
+		for (int i = 0; i < pom; i++)
+		{
+			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo);
+		}
+		cout << "\n\n  ----------\n\n\n";
+
+		pom--;
+		for (int i = pom; i >= 0; i--)
+		{
+			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo);
+		}
 	}
-	cout << "\n\n  ----------\n\n\n";
-
-	pom--;
-	for (int i = pom; i >= 0; i--)
+	else
 	{
-		cout << kriteriumNazov_->ohodnot(obceNaZorad->getItemAtIndex(i).accessData()) << endl;
+		cout << "Chyba - Zadana uzemna jednotka nebola najdena!" << endl;
 	}
 }
 
@@ -310,4 +330,17 @@ void System::plnyVypis(UzemnaJednotka* uzJednotka)
 		cout << "Platne hlasy:  " << kriteriumPlatneHlasy_->ohodnot(uzJednotka) << endl;
 	}
 	cout << "----------\n\n";
+}
+
+void System::ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, Kolo kolo)
+{
+	kriteriumUcast_->set(kolo);
+	cout << kriteriumNazov_->ohodnot(uzJednotka);
+	cout << "  ->  " << kriteriumNazov_->ohodnot(uzJednotka->dajVyssiuJednotku());
+	if (typ == typ_kraj)
+	{
+		cout << "  ->  " << kriteriumNazov_->ohodnot(uzJednotka->dajVyssiuJednotku()->dajVyssiuJednotku());
+	}
+	cout << "  -  ucast: " << kriteriumUcast_->ohodnot(uzJednotka);
+	cout << endl;
 }

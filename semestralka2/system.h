@@ -56,11 +56,9 @@ public:
 	///<summary>Zastresujuca metoda pre funkcionalitu c. 4</summary>
 	void zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo);
 
-	///<summary>Funkcionalita 4 - filter podla kriteria nazov</summary>
-	void zoradPodlaNazvu(structures::UnsortedSequenceTable<std::string, Obec*>* obceNaZorad);
-
 	///<summary>Vypise vsetky informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 3</summary>
 	void plnyVypis(UzemnaJednotka* uzJednotka);
-
+	///<summary>Vypise ciastkove informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 4</summary>
+	void ciastocnyVypis(UzemnaJednotka* uzJednotka, TypUzemnejJednotky typ, Kolo kolo);
 	
 };

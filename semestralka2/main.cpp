@@ -117,12 +117,14 @@ int main()
 				if (nacitajCeleKladneCisMensieRovne(2, false) == 1)
 				{
 					cout << "Zadajte nazov kraja, ku ktoremu patri obec:" << endl;
+					cin.ignore();
 					getline(std::cin, pom);
 					typJednotky = typ_kraj;
 				}
 				else
 				{
 					cout << "Zadajte nazov okresu, ku ktoremu patri obec:" << endl;
+					cin.ignore();
 					getline(std::cin, pom);
 					typJednotky = typ_okres;
 				}
@@ -139,6 +141,7 @@ int main()
 				}
 				else { cout << "Chyba - Nespravne zadany interval!" << endl; }
 
+				zadavamEnter();
 				break;
 
 			case 0:
