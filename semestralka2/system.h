@@ -54,7 +54,7 @@ public:
 	///<summary>Funkcionalita 3 - filter podla ucasti, kt. bola vo zvolenom kole</summary>
 	void filtUcasti(Kolo kolo, double percentOd, double percentDo);
 	///<summary>Zastresujuca metoda pre funkcionalitu c. 4</summary>
-	void zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo);
+	void zorad(SposobUsporiadania usporPodla, string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo);
 
 	///<summary>Vypise vsetky informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 3</summary>
 	void plnyVypis(UzemnaJednotka* uzJednotka);

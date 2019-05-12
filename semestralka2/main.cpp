@@ -34,6 +34,7 @@ int main()
 		double ucastDo;
 		Kolo zvoleneKolo;
 		TypUzemnejJednotky typJednotky;
+		SposobUsporiadania usporiadPodla;
 
 		while (pokracovat)
 		{
@@ -113,7 +114,7 @@ int main()
 
 
 			case 2:
-				cout << "Obce maju patrit ku:\n  1) Kraju\n  2) Okresu" << endl;
+				cout << "Obce maju patrit ku:\n  1) Kraju\n  2) Okresu\n" << endl;
 				if (nacitajCeleKladneCisMensieRovne(2, false) == 1)
 				{
 					cout << "Zadajte nazov kraja, ku ktoremu patri obec:" << endl;
@@ -128,7 +129,7 @@ int main()
 					getline(std::cin, pom);
 					typJednotky = typ_okres;
 				}
-				cout << "Zadajte interval ucasti (v %) volicov na volbach v tvare <OD, DO>\nOD (znak % nepiste):\n";
+				cout << "\nZadajte interval ucasti (v %) volicov na volbach v tvare <OD, DO>\nOD (znak % nepiste):\n";
 				ucastOd = nacitajKladneDouble();
 				cout << "\nDO (znak % nepiste):\n";
 				ucastDo = nacitajKladneDouble();
@@ -136,7 +137,12 @@ int main()
 				if (ucastOd <= ucastDo)
 				{
 					zvoleneKolo = nacitajKoloVolieb();
-					sys->zorad(pom, typJednotky, zvoleneKolo, ucastOd, ucastDo);
+
+					cout << "Obce si prajete zoradit (vzostupne aj zostupne) podla:\n  1) Nazvu\n  2) Poctu volicov\n  3) Dosiahnutej ucasti\n" << endl;
+
+					usporiadPodla = static_cast<SposobUsporiadania>(nacitajCeleKladneCisMensieRovne(POCET_MOZNOSTI_USPORIADANIA, false) - 1);
+
+					sys->zorad(usporiadPodla, pom, typJednotky, zvoleneKolo, ucastOd, ucastDo);
 					cin.ignore();
 				}
 				else { cout << "Chyba - Nespravne zadany interval!" << endl; }

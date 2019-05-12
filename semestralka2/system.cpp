@@ -168,7 +168,7 @@ void System::filtObce(string nazovObce)
 
 void System::filtVolicov(Kolo kolo, int pocetVolOd, int pocetVolDo)
 {
-	kriteriumVolici_->set(kolo);
+	kriteriumVolici_->set(prve);
 	filterVolici_->set(pocetVolOd, pocetVolDo);
 
 	int pom = kraje_->size();
@@ -194,7 +194,7 @@ void System::filtVolicov(Kolo kolo, int pocetVolOd, int pocetVolDo)
 	{
 		if (filterVolici_->ohodnot((*obce_).getItemAtIndex(i).accessData(), kriteriumVolici_))
 		{
-			plnyVypis((*obce_).getItemAtIndex(i).accessData());
+			plnyVypis((obce_)->getItemAtIndex(i).accessData());
 		}
 	}
 }
@@ -232,7 +232,7 @@ void System::filtUcasti(Kolo kolo, double percentOd, double percentDo)
 	}
 }
 
-void System::zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo)
+void System::zorad(SposobUsporiadania usporPodla, string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo)
 {
 	auto* tabulkaNaTriedenie = new structures::UnsortedSequenceTable<std::string, Obec*>();
 	UzemnaJednotka* pointerNaJednotku = nullptr;
@@ -280,7 +280,17 @@ void System::zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, do
 
 		//sortovanie
 		structures::ShellSort<string, Obec*> ShellSort;
-		ShellSort.sort(*tabulkaNaTriedenie);
+
+		switch(usporPodla)
+		{
+		case podla_nazvu:
+			ShellSort.sort(*tabulkaNaTriedenie);
+			break;
+		case podla_volicov:
+			break;
+		case podla_ucasti:
+			break;
+		}
 
 		//vypis
 		pom = tabulkaNaTriedenie->size();
