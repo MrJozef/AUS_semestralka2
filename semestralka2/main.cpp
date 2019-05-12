@@ -86,9 +86,10 @@ int main()
 					if (pocetOd <= pocetDo)
 					{
 						zvoleneKolo = nacitajKoloVolieb();
-						//todo
+						sys->filtVolicov(zvoleneKolo, pocetOd, pocetDo);
+						cin.ignore();
 					}
-					else { cout << "Chyba - Nespravne zadany inteval!" << endl; }
+					else { cout << "Chyba - Nespravne zadany interval!" << endl; }
 					break;
 
 				case 3:
@@ -100,9 +101,10 @@ int main()
 					if (ucastOd <= ucastDo)
 					{
 						zvoleneKolo = nacitajKoloVolieb();
-						//todo 
+						sys->filtUcasti(zvoleneKolo, ucastOd, ucastDo);
+						cin.ignore();
 					}
-					else { cout << "Chyba - Nespravne zadany inteval!" << endl; }
+					else { cout << "Chyba - Nespravne zadany interval!" << endl; }
 					break;
 				}
 				zadavamEnter();
@@ -235,7 +237,7 @@ double nacitajKladneDouble()
 
 Kolo nacitajKoloVolieb()
 {
-	cout << "Zadany interval sa vztahuje na:\n  1) 1. kolo volieb\n  2) 2. kolo volieb" << endl;
+	cout << "\nZadany interval sa vztahuje na:\n  1) 1. kolo volieb\n  2) 2. kolo volieb" << endl;
 	if (nacitajCeleKladneCisMensieRovne(POCET_KOL, false) == 1)
 	{
 		return prve;

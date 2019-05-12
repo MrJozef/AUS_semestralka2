@@ -34,7 +34,7 @@ template <typename T, typename O>
 bool FilterDvojParam<T, O>::ohodnot(O objekt, Kriterium<T, O>* kriterium)
 {
 	T vysledok = kriterium->ohodnot(objekt);
-	return (vysledok <= beta_) && (vysledok >= alfa_);
+	return (vysledok >= alfa_ && vysledok <= beta_);
 }
 
 template <typename T, typename O>

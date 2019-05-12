@@ -48,6 +48,10 @@ public:
 	void filtOkresy(string nazovOkresu);
 	///<summary>Funkcionalita 3 - filter podla nazvu pre kraje</summary>
 	void filtObce(string nazovObce);
+	///<summary>Funkcionalita 3 - filter podla poctu volicov, kt. volili vo zvolenom kole</summary>
+	void filtVolicov(Kolo kolo, int pocetVolOd, int pocetVolDo);
+	///<summary>Funkcionalita 3 - filter podla ucasti, kt. bola vo zvolenom kole</summary>
+	void filtUcasti(Kolo kolo, double percentOd, double percentDo);
 	///<summary>Vypise vsetky informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 3</summary>
 	void plnyVypis(UzemnaJednotka* uzJednotka);
 

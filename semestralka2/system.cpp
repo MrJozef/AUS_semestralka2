@@ -168,12 +168,77 @@ void System::filtOkresy(string nazovOkresu)
 
 void System::filtObce(string nazovObce)
 {
-	int pom = obce_->size();
 	Obec* pomObec;
 	filterNazov_->set(nazovObce);
 	if (obce_->tryFind(nazovObce, pomObec))
 	{
 		plnyVypis(pomObec);
+	}
+}
+
+void System::filtVolicov(Kolo kolo, int pocetVolOd, int pocetVolDo)
+{
+	kriteriumVolici_->set(kolo);
+	filterVolici_->set(pocetVolOd, pocetVolDo);
+
+	int pom = kraje_->size();
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterVolici_->ohodnot((*kraje_)[i], kriteriumVolici_))
+		{
+			plnyVypis((*kraje_)[i]);
+		}
+	}
+
+	pom = okresy_->size();
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterVolici_->ohodnot((*okresy_)[i], kriteriumVolici_))
+		{
+			plnyVypis((*okresy_)[i]);
+		}
+	}
+
+	pom = obce_->size();
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterVolici_->ohodnot((*obce_).getItemAtIndex(i).accessData(), kriteriumVolici_))
+		{
+			plnyVypis((*obce_).getItemAtIndex(i).accessData());
+		}
+	}
+}
+
+void System::filtUcasti(Kolo kolo, double percentOd, double percentDo)
+{
+	kriteriumUcast_->set(kolo);
+	filterUcast_->set(percentOd, percentDo);
+
+	int pom = kraje_->size();
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterUcast_->ohodnot((*kraje_)[i], kriteriumUcast_))
+		{
+			plnyVypis((*kraje_)[i]);
+		}
+	}
+
+	pom = okresy_->size();
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterUcast_->ohodnot((*okresy_)[i], kriteriumUcast_))
+		{
+			plnyVypis((*okresy_)[i]);
+		}
+	}
+
+	pom = obce_->size();
+	for (int i = 0; i < pom; i++)
+	{
+		if (filterUcast_->ohodnot((*obce_).getItemAtIndex(i).accessData(), kriteriumUcast_))
+		{
+			plnyVypis((*obce_).getItemAtIndex(i).accessData());
+		}
 	}
 }
 
@@ -204,4 +269,5 @@ void System::plnyVypis(UzemnaJednotka* uzJednotka)
 		kriteriumPlatneHlasy_->set(static_cast<Kolo>(i));
 		cout << "Platne hlasy:  " << kriteriumPlatneHlasy_->ohodnot(uzJednotka) << endl;
 	}
+	cout << "----------\n\n";
 }

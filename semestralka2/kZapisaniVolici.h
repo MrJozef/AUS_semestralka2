@@ -28,7 +28,7 @@ inline KZapisaniVolici::~KZapisaniVolici()
 
 inline int KZapisaniVolici::ohodnot(UzemnaJednotka* objekt)
 {
-	return objekt->dajZapisVolicov(kolo_);
+	return objekt->dajZapisVolicov(static_cast<int>(kolo_));
 }
 
 inline void KZapisaniVolici::set(Kolo kolo)
