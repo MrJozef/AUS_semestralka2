@@ -17,3 +17,10 @@ enum Kolo
 	druhe,
 	obe
 };
+
+enum TypUzemnejJednotky
+{
+	typ_kraj,
+	typ_okres,
+	typ_obec
+};

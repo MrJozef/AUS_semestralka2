@@ -2,6 +2,7 @@
 #include "../structures/heap_monitor.h"
 #include "../structures/list/linked_list.h"
 #include "../structures/table/unsorted_sequence_table.h"
+#include "../structures/table/sorting/shell_sort.h"
 #include "kraj.h"
 #include "okres.h"
 #include "obec.h"
@@ -52,6 +53,12 @@ public:
 	void filtVolicov(Kolo kolo, int pocetVolOd, int pocetVolDo);
 	///<summary>Funkcionalita 3 - filter podla ucasti, kt. bola vo zvolenom kole</summary>
 	void filtUcasti(Kolo kolo, double percentOd, double percentDo);
+	///<summary>Zastresujuca metoda pre funkcionalitu c. 4</summary>
+	void zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo);
+
+	///<summary>Funkcionalita 4 - filter podla kriteria nazov</summary>
+	void zoradPodlaNazvu(structures::UnsortedSequenceTable<std::string, Obec*>* obceNaZorad);
+
 	///<summary>Vypise vsetky informacie o uzemnej jednotke, tak ako to vyzaduje funkcionalita 3</summary>
 	void plnyVypis(UzemnaJednotka* uzJednotka);
 

@@ -33,6 +33,7 @@ int main()
 		double ucastOd;
 		double ucastDo;
 		Kolo zvoleneKolo;
+		TypUzemnejJednotky typJednotky;
 
 		while (pokracovat)
 		{
@@ -112,7 +113,32 @@ int main()
 
 
 			case 2:
-				//todo
+				cout << "Obce maju patrit ku:\n  1) Kraju\n  2) Okresu" << endl;
+				if (nacitajCeleKladneCisMensieRovne(2, false) == 1)
+				{
+					cout << "Zadajte nazov kraja, ku ktoremu patri obec:" << endl;
+					getline(std::cin, pom);
+					typJednotky = typ_kraj;
+				}
+				else
+				{
+					cout << "Zadajte nazov okresu, ku ktoremu patri obec:" << endl;
+					getline(std::cin, pom);
+					typJednotky = typ_okres;
+				}
+				cout << "Zadajte interval ucasti (v %) volicov na volbach v tvare <OD, DO>\nOD (znak % nepiste):\n";
+				ucastOd = nacitajKladneDouble();
+				cout << "\nDO (znak % nepiste):\n";
+				ucastDo = nacitajKladneDouble();
+
+				if (ucastOd <= ucastDo)
+				{
+					zvoleneKolo = nacitajKoloVolieb();
+					sys->zorad(pom, typJednotky, zvoleneKolo, ucastOd, ucastDo);
+					cin.ignore();
+				}
+				else { cout << "Chyba - Nespravne zadany interval!" << endl; }
+
 				break;
 
 			case 0:

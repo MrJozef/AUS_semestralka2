@@ -70,17 +70,6 @@ System::System(fstream* inSubor)
 	filterVolici_ = new FZapisaniVolici();
 	filterUcast_ = new FUcast();
 	filterPrislusnost_ = new FPrislusnostObce();
-
-	//todo zmazat tieto skusky
-	/*kriteriumVolici_->set(prve);
-	filterVolici_->set(400000, 450000);
-	if (filterVolici_->ohodnot((*kraje_)[1], kriteriumVolici_))
-		cout << "Kraj ma stanovenu ucast volicov!" << endl;
-
-	kriteriumPrislusnost_->set((*okresy_)[0]);
-	filterPrislusnost_->set(true);
-	if (filterPrislusnost_->ohodnot((*obce_)[1], kriteriumPrislusnost_))
-		cout << "patri!" << endl;*/
 }
 
 
@@ -150,7 +139,7 @@ void System::filtKraje(string nazovKraja)
 			break;
 		}
 	}
-}//todo doplnit ak nic nenaslo tak - nenasiel sa s danym nazvom..
+}
 
 void System::filtOkresy(string nazovOkresu)
 {
@@ -239,6 +228,57 @@ void System::filtUcasti(Kolo kolo, double percentOd, double percentDo)
 		{
 			plnyVypis((*obce_).getItemAtIndex(i).accessData());
 		}
+	}
+
+	zoradPodlaNazvu(obce_);
+}
+
+void System::zorad(string nazovUzJednotky, TypUzemnejJednotky typ, Kolo kolo, double percentOd, double percentDo)
+{
+	auto* tabulkaNaTriedenie = new structures::UnsortedSequenceTable<std::string, Obec*>();
+	UzemnaJednotka* pointerNaJednotku;
+	if(typ == typ_kraj)
+	{
+		int pom = kraje_->size();
+		for (int i = 0; i < pom; i++)
+		{
+			if (kriteriumNazov_->ohodnot((*kraje_)[i]) == nazovUzJednotky)
+			{
+				pointerNaJednotku = (*kraje_)[i];
+			}
+		}
+	}
+	else
+	{
+		int pom = okresy_->size();
+		for (int i = 0; i < pom; i++)
+		{
+			if (kriteriumNazov_->ohodnot((*okresy_)[i]) == nazovUzJednotky)
+			{
+				pointerNaJednotku = (*okresy_)[i];
+			}
+		}
+	}
+
+	//mozeme pretriedit podla toho ci patria k danej vyssej jednotke
+}
+
+void System::zoradPodlaNazvu(structures::UnsortedSequenceTable<std::string, Obec*>* obceNaZorad)
+{
+	structures::ShellSort<string, Obec*> ShellSort;
+	ShellSort.sort(*obceNaZorad);
+
+	int pom = obceNaZorad->size();
+	for (int i = 0; i < pom; i++)
+	{
+		cout << kriteriumNazov_->ohodnot(obceNaZorad->getItemAtIndex(i).accessData()) << endl;
+	}
+	cout << "\n\n  ----------\n\n\n";
+
+	pom--;
+	for (int i = pom; i >= 0; i--)
+	{
+		cout << kriteriumNazov_->ohodnot(obceNaZorad->getItemAtIndex(i).accessData()) << endl;
 	}
 }
 
