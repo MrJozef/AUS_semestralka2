@@ -307,6 +307,9 @@ void System::zorad(SposobUsporiadania usporPodla, string nazovUzJednotky, TypUze
 		{
 			ciastocnyVypis(tabulkaNaTriedenie->getItemAtIndex(i).accessData(), typ, kolo, usporPodla);
 		}
+
+		//delete pomocnej sekvencnej tabulky
+		delete tabulkaNaTriedenie;
 	}
 	else
 	{
