@@ -85,7 +85,6 @@ namespace structures
 				int j = i;
 				while ((j - skok >= delta) && (kriterium->ohodnot(table.getItemAtIndex(j).accessData()) < kriterium->ohodnot(table.getItemAtIndex(j - skok).accessData())))
 				{
-					cout << "ble" << endl;
 					table.swap(j, j - skok);
 					j -= skok;
 				}
@@ -115,7 +114,6 @@ namespace structures
 				int j = i;
 				while ((j - skok >= delta) && (kriterium->ohodnot(table.getItemAtIndex(j).accessData()) < kriterium->ohodnot(table.getItemAtIndex(j - skok).accessData())))
 				{
-					cout << "ble" << endl;
 					table.swap(j, j - skok);
 					j -= skok;
 				}
